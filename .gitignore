@@ -1,0 +1,8 @@
+# venv
+myvenv/
+
+# db
+db.sqlite3
+
+# idea
+.idea/
