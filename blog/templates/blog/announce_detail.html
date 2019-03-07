@@ -3,11 +3,13 @@
 
     <h1>공지사항</h1>
 
-    {% if announce.published_date %}
-        {{ announce.published_date }}
-    {% endif %}
     <h1>{{ announce.title }}</h1>
+    {% if announce.created_date %}
+        {{ announce.created_date }}
+    {% endif %}
     <p>{{ announce.text|linebreaksbr }}</p>
-    <img src= {{ announce.image.url }} >
+    {% if announce.image %}
+        <img src= {{ announce.image.url }} >
+    {% endif %}
 
 {% endblock %}

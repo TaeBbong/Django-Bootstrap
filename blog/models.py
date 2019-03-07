@@ -6,7 +6,7 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
-    image = models.ImageField(upload_to='media', default='devkor_logo_mini.png')
+    image = models.ImageField(upload_to='media')
     created_date = models.DateTimeField(
             default=timezone.now)
 
