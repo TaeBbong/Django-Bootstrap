@@ -84,7 +84,7 @@ def portfolio_detail(request, pk):
 @login_required
 def portfolio_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
+        form = PortfolioForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -162,7 +162,7 @@ def seminar_new(request):
             post.save()
             return redirect('seminar_page')
     else:
-        form = PostForm()
+        form = SeminarForm()
     return render(request, 'blog/seminar_edit.html', {'form': form})
 
 def contact_page(request):
