@@ -34,6 +34,12 @@
   <body>
     <div class="container">
         <div class="masthead">
+            {% if user.is_authenticated %}
+                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+        {% else %}
+            <a href="{% url 'signup' %}" class="top-menu">회원가입</a>
+            <a href="{% url 'login' %}" class="top-menu">로그인</a>
+        {% endif %}
             <h3><a href="/" style="color: #444444">개발동아리 DevKor</a></h3>
             <nav>
                 <ul class="nav nav-justified">

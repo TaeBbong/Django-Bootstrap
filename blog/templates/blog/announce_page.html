@@ -1,4 +1,16 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
+    <h1>공지사항</h1>
+
+    <a href="{% url 'announce_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+    {% for announce in announcements %}
+        <div>
+            <h1><a href="{% url 'announce_detail' pk=announce.pk %}">{{ announce.title }}</a></h1>
+            <p>{{ announce.text|linebreaksbr }}</p>
+            <p>created: {{ announce.created_date }}</p>
+        </div>
+    {% endfor %}
+
 {% endblock %}
