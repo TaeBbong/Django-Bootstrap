@@ -1,4 +1,26 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
+    <h3></h3>
+    <h1 style="text-align: center">동아리 활동</h1>
+    <h5 style="text-align: right"><a href="{% url 'activity_new' %}" class="top-menu">+새로운 활동 작성하기</a></h5>
+    <h3></h3>
+    <table border=0>
+        {% for activity in activities %}
+            {% for act in activity %}
+                {% load thumbnail %}
+                {% thumbnail act.thumbnail 200x180 as im%}
+                <td style="padding:10px">
+                    <a href="{% url 'activity_detail' pk=ann.pk %}">
+                        <img src={{ im.url }} width="{{ im.width }}" height="{{ im.height }}">
+                    </a>
+                    <h3><a href="{% url 'activity_detail' pk=act.pk %}">{{ act.title }}</a></h3>
+                    <p>created: {{ act.created_date }}</p>
+                </td>
+            {%  endfor %}
+            <tr></tr>
+        {% endfor %}
+    </table>
+
+
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <h1>동아리 활동</h1>
+
+    <h1>{{ activity.title }}</h1>
+    {% if activity.created_date %}
+        {{ activity.created_date }}
+    {% endif %}
+    <p>{{ activity.text|linebreaksbr }}</p>
+    {% if activity.image %}
+        <img src= {{ activity.image.url }} >
+    {% endif %}
+
+{% endblock %}

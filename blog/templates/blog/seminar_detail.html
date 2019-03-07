@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <h1>정기 세미나</h1>
+
+    <h1>{{ seminar.title }}</h1>
+    {% if seminar.created_date %}
+        {{ seminar.created_date }}
+    {% endif %}
+    <p>{{ seminar.text|linebreaksbr }}</p>
+    {% if seminar.image %}
+        <img src= {{ seminar.image.url }} >
+    {% endif %}
+
+{% endblock %}

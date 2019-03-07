@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, AdPost, Images
+from .models import Post, Activity, Seminar, Portfolio
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
@@ -12,17 +12,22 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'image', )
+        fields = ('title', 'text', 'thumbnail', )
 
-class AdPostForm(forms.ModelForm):
-
-    class Meta:
-        model = AdPost
-        fields = ('title', 'text', 'thumb', 'file', )
-
-class ImageForm(forms.ModelForm):
-    image = forms.ImageField(label='Image')
+class ActivityForm(forms.ModelForm):
 
     class Meta:
-        model = Images
-        fields = ('image', )
+        model = Activity
+        fields = ('title', 'text', 'thumbnail', )
+
+class PortfolioForm(forms.ModelForm):
+
+    class Meta:
+        model = Portfolio
+        fields = ('title', 'text', 'thumbnail', )
+
+class SeminarForm(forms.ModelForm):
+
+    class Meta:
+        model = Seminar
+        fields = ('title', 'text', 'thumbnail', )

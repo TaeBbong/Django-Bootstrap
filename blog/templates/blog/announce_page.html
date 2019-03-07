@@ -1,16 +1,26 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-    <h1>공지사항</h1>
+    <h3></h3>
+    <h1 style="text-align: center">공지사항</h1>
+    <h5 style="text-align: right"><a href="{% url 'announce_new' %}" class="top-menu">+공지사항 작성하기</a></h5>
+    <h3></h3>
+    <table border=0>
+        {% for announce in announcements %}
+            {% for ann in announce %}
+                {% load thumbnail %}
+                {% thumbnail ann.thumbnail 200x180 as im%}
+                <td style="padding:10px">
+                    <a href="{% url 'announce_detail' pk=ann.pk %}">
+                        <img src={{ im.url }} width="{{ im.width }}" height="{{ im.height }}">
+                    </a>
+                    <h3><a href="{% url 'announce_detail' pk=ann.pk %}">{{ ann.title }}</a></h3>
+                    <p>created: {{ ann.created_date }}</p>
+                </td>
+            {%  endfor %}
+            <tr></tr>
+        {% endfor %}
+    </table>
 
-    <a href="{% url 'announce_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-
-    {% for announce in announcements %}
-        <div>
-            <h1><a href="{% url 'announce_detail' pk=announce.pk %}">{{ announce.title }}</a></h1>
-            <p>{{ announce.text|linebreaksbr }}</p>
-            <p>created: {{ announce.created_date }}</p>
-        </div>
-    {% endfor %}
 
 {% endblock %}

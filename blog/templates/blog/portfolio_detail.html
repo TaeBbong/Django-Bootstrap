@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <h1>포트폴리오</h1>
+
+    <h1>{{ portfolio.title }}</h1>
+    {% if portfolio.created_date %}
+        {{ portfolio.created_date }}
+    {% endif %}
+    <p>{{ portfolio.text|linebreaksbr }}</p>
+    {% if portfolio.image %}
+        <img src= {{ portfolio.image.url }} >
+    {% endif %}
+
+{% endblock %}

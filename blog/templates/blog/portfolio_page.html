@@ -1,4 +1,26 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
+    <h3></h3>
+    <h1 style="text-align: center">포트폴리오</h1>
+    <h5 style="text-align: right"><a href="{% url 'portfolio_new' %}" class="top-menu">+포트폴리오 작성하기</a></h5>
+    <h3></h3>
+    <table border=0>
+        {% for portfolio in portfolios %}
+            {% for port in portfolio %}
+                {% load thumbnail %}
+                {% thumbnail port.thumbnail 200x180 as im%}
+                <td style="padding:10px">
+                    <a href="{% url 'portfolio_detail' pk=port.pk %}">
+                        <img src={{ im.url }} width="{{ im.width }}" height="{{ im.height }}">
+                    </a>
+                    <h3><a href="{% url 'portfolio_detail' pk=port.pk %}">{{ port.title }}</a></h3>
+                    <p>created: {{ port.created_date }}</p>
+                </td>
+            {%  endfor %}
+            <tr></tr>
+        {% endfor %}
+    </table>
+
+
 {% endblock %}

@@ -1,4 +1,26 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
+    <h3></h3>
+    <h1 style="text-align: center">정기 세미나</h1>
+    <h5 style="text-align: right"><a href="{% url 'seminar_new' %}" class="top-menu">+세미나 작성하기</a></h5>
+    <h3></h3>
+    <table border=0>
+        {% for seminar in seminars %}
+            {% for sem in seminar %}
+                {% load thumbnail %}
+                {% thumbnail sem.thumbnail 200x180 as im%}
+                <td style="padding:10px">
+                    <a href="{% url 'seminar_detail' pk=sem.pk %}">
+                        <img src={{ im.url }} width="{{ im.width }}" height="{{ im.height }}">
+                    </a>
+                    <h3><a href="{% url 'seminar_detail' pk=sem.pk %}">{{ sem.title }}</a></h3>
+                    <p>created: {{ sem.created_date }}</p>
+                </td>
+            {%  endfor %}
+            <tr></tr>
+        {% endfor %}
+    </table>
+
+
 {% endblock %}
